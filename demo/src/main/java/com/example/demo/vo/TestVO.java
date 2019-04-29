@@ -1,11 +1,16 @@
 package com.example.demo.vo;
 
 
+import lombok.Data;
+import lombok.ToString;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class TestVO {
+@ToString
+@Data
+public class TestVO extends AuthorizationInfo{
 
 
     @NotEmpty(message = "名称不能为空")
@@ -17,20 +22,4 @@ public class TestVO {
     @NotEmpty(message = "Email不能为空")
     private String email;
 
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

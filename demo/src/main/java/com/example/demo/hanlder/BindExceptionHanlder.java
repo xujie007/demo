@@ -1,9 +1,11 @@
 package com.example.demo.hanlder;
 
 
+import com.example.demo.util.ErrorCode;
 import com.example.demo.util.JsonResponse;
+import com.example.demo.util.RestResult;
+import com.example.demo.util.RestResultGenerator;
 import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -29,6 +31,12 @@ public class BindExceptionHanlder {
         errorResult.setCode(400);
         errorResult.setMessage(sb.toString());
         return errorResult;
+    }
+
+
+    @ExceptionHandler(NullPointerException.class)
+    public RestResult handleNullPointerException(NullPointerException ex) {
+       return RestResultGenerator.genErrorResult(ErrorCode.SERVER_ERROR);
     }
 
 
